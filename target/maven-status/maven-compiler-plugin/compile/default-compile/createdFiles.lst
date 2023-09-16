@@ -1,3 +1,4 @@
-module-info.class
 sunat\gob\pe\airbnfx\App.class
+module-info.class
+sunat\gob\pe\airbnfx\controller\LoginAirbnController.class
 sunat\gob\pe\airbnfx\SystemInfo.class
