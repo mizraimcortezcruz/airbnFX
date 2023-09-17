@@ -5,10 +5,14 @@
 package sunat.gob.pe.airbnfx.controller;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sunat.gob.pe.airbnfx.model.dao.IUsuarioDao;
+import sunat.gob.pe.airbnfx.model.dao.impl.UsuarioDaoImpl;
 
 /**
  * FXML Controller class
@@ -25,8 +29,18 @@ public class LoginAirbnController{
     
     @FXML
     public void autenticarUsuarioAirbn(ActionEvent actionEvent) throws IOException {
-        System.out.println(txtUsuarioAirbn.getText());
+        System.out.println(txtUsuarioAirbn.getText().trim());
         System.out.println(txtClaveAirbn.getText());
+        IUsuarioDao usuariodao=new UsuarioDaoImpl();
+        Map<Integer,Object> mapUsuario=usuariodao.validarUsuario(txtUsuarioAirbn.getText().trim()
+                , txtClaveAirbn.getText());
+        if(mapUsuario!=null){
+            Iterator it = mapUsuario.keySet().iterator();
+            while(it.hasNext()){
+              Integer key = (Integer) it.next();
+              System.out.println("Clave: " + key + " -> Valor: " + mapUsuario.get(key));
+            }
+        }
         /*if(validarDatos()){
             FXMLLoader loader =  App.getFXMLLoader("dashboard");
             Parent dashboard = loader.load();

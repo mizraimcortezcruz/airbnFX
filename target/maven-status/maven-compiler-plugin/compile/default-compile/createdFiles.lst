@@ -1,4 +1,8 @@
 sunat\gob\pe\airbnfx\App.class
+sunat\gob\pe\airbnfx\model\entities\Usuario.class
+sunat\gob\pe\airbnfx\model\dao\impl\UsuarioDaoImpl.class
 module-info.class
 sunat\gob\pe\airbnfx\controller\LoginAirbnController.class
+sunat\gob\pe\airbnfx\model\dao\IUsuarioDao.class
+sunat\gob\pe\airbnfx\model\util\Conexion.class
 sunat\gob\pe\airbnfx\SystemInfo.class
