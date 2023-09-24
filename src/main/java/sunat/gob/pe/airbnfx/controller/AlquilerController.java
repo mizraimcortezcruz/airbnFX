@@ -45,12 +45,13 @@ public class AlquilerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("AlquilerController initialize");
         enlazarTabla();
         llenarDatosEnTabla();
     }
     
     private void enlazarTabla() {
-        
+        alquilerTable.setItems(alquilerData);
         idAlquilerColumn.setCellValueFactory(rowData -> rowData.getValue().getIdAlquiler1());
         idUsuarioColumn.setCellValueFactory(rowData -> rowData.getValue().getIdUsuario1());
         idDepartamentoColumn.setCellValueFactory(rowData -> rowData.getValue().getIdDepartamento1());

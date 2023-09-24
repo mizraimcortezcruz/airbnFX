@@ -29,17 +29,23 @@ public class AlquilerDaoImpl implements IAlquilerDao{
         ResultSet rs = null;
 
         try {
-
+            System.out.println("AlquilerDaoImpl getListaAlquileres inicio");
             String sql = "select idAlquiler,idUsuario,idDepartamento,FechaIni,FechaFin,MontoAlquiler from alquiler where idAlquiler = 1;";
             pstmt = conn.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
+                System.out.println("AlquilerDaoImpl getListaAlquileres hay resultados 1"+rs.getInt(1));
+                System.out.println("AlquilerDaoImpl getListaAlquileres hay resultados 2"+rs.getInt(2));
+                System.out.println("AlquilerDaoImpl getListaAlquileres hay resultados 3"+rs.getInt(3));
+                System.out.println("AlquilerDaoImpl getListaAlquileres hay resultados 4"+rs.getDate(4));
+                System.out.println("AlquilerDaoImpl getListaAlquileres hay resultados 5"+rs.getDate(5));
+                System.out.println("AlquilerDaoImpl getListaAlquileres hay resultados 6"+rs.getDouble(6));
                 listaAlquiler.add(new Alquiler(rs.getInt(1),rs.getInt(2),rs.getInt(3)
                     ,rs.getDate(4),rs.getDate(5),rs.getDouble(6)));
                 
             }
-
+            System.out.println("AlquilerDaoImpl getListaAlquileres fin");
         } catch (SQLException se) {
             System.out.println(se.getMessage());
         } finally {

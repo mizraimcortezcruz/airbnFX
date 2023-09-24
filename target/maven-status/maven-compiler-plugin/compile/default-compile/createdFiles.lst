@@ -1,8 +1,12 @@
 sunat\gob\pe\airbnfx\App.class
 sunat\gob\pe\airbnfx\model\entities\Usuario.class
 sunat\gob\pe\airbnfx\model\dao\impl\UsuarioDaoImpl.class
+sunat\gob\pe\airbnfx\controller\AlquilerController.class
+sunat\gob\pe\airbnfx\model\entities\Alquiler.class
 module-info.class
 sunat\gob\pe\airbnfx\controller\LoginAirbnController.class
 sunat\gob\pe\airbnfx\model\dao\IUsuarioDao.class
 sunat\gob\pe\airbnfx\model\util\Conexion.class
+sunat\gob\pe\airbnfx\model\dao\IAlquilerDao.class
+sunat\gob\pe\airbnfx\model\dao\impl\AlquilerDaoImpl.class
 sunat\gob\pe\airbnfx\SystemInfo.class
