@@ -8,12 +8,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sunat.gob.pe.airbnfx.controller.AlquilerController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sunat.gob.pe.airbnfx.controller.AlquilerController">
     <children>
        
       <ScrollPane prefHeight="600.0" prefWidth="800.0">
          <content>
-            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="750.0">
+            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="780.0">
                <children>
                   <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="246.0" prefWidth="700.0" vgap="20.0">
                     <columnConstraints>
@@ -182,6 +182,16 @@
                         </Button>
                      </children>
                   </GridPane>
+                  <TableView fx:id="alquilerTable" prefHeight="145.0" prefWidth="798.0">
+                    <columns>
+                      <TableColumn fx:id="idAlquilerColumn" prefWidth="95.0" text="idAlquiler" />
+                      <TableColumn fx:id="idUsuarioColumn" prefWidth="102.0" text="idUsuario" />
+                        <TableColumn fx:id="idDepartamentoColumn" prefWidth="150.0" text="idDepartamento" />
+                        <TableColumn fx:id="fechaInicioColumn" minWidth="0.0" prefWidth="112.0" text="Fecha Inicio" />
+                        <TableColumn fx:id="fechaFinColumn" prefWidth="101.0" text="Fecha Fin" />
+                        <TableColumn fx:id="montoAlquilerColumn" prefWidth="177.0" text="Monto Alquiler" />
+                    </columns>
+                  </TableView>
                </children>
                
             </VBox>
