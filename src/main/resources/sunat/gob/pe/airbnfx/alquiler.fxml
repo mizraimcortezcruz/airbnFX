@@ -165,7 +165,7 @@
                               <Font name="Comic Sans MS" size="14.0" />
                            </font>
                         </TextField>
-                        <TextField promptText="Ingrese precio total" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="txtPrecio" promptText="Ingrese precio total" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -175,7 +175,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <Button mnemonicParsing="false" fx:id="btnGuardar" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <font>
                               <Font name="Comic Sans MS" size="14.0" />
                            </font>

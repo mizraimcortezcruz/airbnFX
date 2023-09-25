@@ -3,6 +3,7 @@ sunat\gob\pe\airbnfx\model\entities\Usuario.class
 sunat\gob\pe\airbnfx\model\dao\impl\UsuarioDaoImpl.class
 sunat\gob\pe\airbnfx\controller\AlquilerController.class
 sunat\gob\pe\airbnfx\model\entities\Alquiler.class
+sunat\gob\pe\airbnfx\controller\AlquilerController$1.class
 module-info.class
 sunat\gob\pe\airbnfx\controller\LoginAirbnController.class
 sunat\gob\pe\airbnfx\model\dao\IUsuarioDao.class
