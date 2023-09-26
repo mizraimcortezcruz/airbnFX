@@ -15,7 +15,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         try{
-            Parent login = App.loadFXML("alquiler");
+            Parent login = App.loadFXML("loginAirbn");
             scene = new Scene(login);
             stage.setScene(scene);
             stage.setTitle("Bienvenido al programa");

@@ -153,7 +153,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <DatePicker prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <DatePicker fx:id="txtFechaInicio" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" />
                         <DatePicker prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="3" />
                         <TextField promptText="Ingrese apellidos y nombres del solicitante" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
                            <font>
@@ -175,7 +175,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" fx:id="btnGuardar" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <font>
                               <Font name="Comic Sans MS" size="14.0" />
                            </font>

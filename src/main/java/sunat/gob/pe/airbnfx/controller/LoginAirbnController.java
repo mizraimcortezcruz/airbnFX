@@ -9,8 +9,12 @@ import java.util.Iterator;
 import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
+import sunat.gob.pe.airbnfx.App;
 import sunat.gob.pe.airbnfx.model.dao.IUsuarioDao;
 import sunat.gob.pe.airbnfx.model.dao.impl.UsuarioDaoImpl;
 
@@ -41,6 +45,13 @@ public class LoginAirbnController{
               System.out.println("Clave: " + key + " -> Valor: " + mapUsuario.get(key));
             }
         }
+        
+        FXMLLoader loader =  App.getFXMLLoader("busquedaAirbn");
+            Parent busquedaAirbn = loader.load();
+            App.scene.setRoot(busquedaAirbn);
+               Window window = App.scene.getWindow();
+            window.setWidth(900);
+            window.setHeight(700);
         /*if(validarDatos()){
             FXMLLoader loader =  App.getFXMLLoader("dashboard");
             Parent dashboard = loader.load();

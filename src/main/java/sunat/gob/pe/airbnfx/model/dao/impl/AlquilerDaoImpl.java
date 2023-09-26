@@ -41,8 +41,15 @@ public class AlquilerDaoImpl implements IAlquilerDao{
                 System.out.println("AlquilerDaoImpl getListaAlquileres hay resultados 4"+rs.getDate(4));
                 System.out.println("AlquilerDaoImpl getListaAlquileres hay resultados 5"+rs.getDate(5));
                 System.out.println("AlquilerDaoImpl getListaAlquileres hay resultados 6"+rs.getDouble(6));
-                listaAlquiler.add(new Alquiler(rs.getInt(1),rs.getInt(2),rs.getInt(3)
-                    ,rs.getDate(4),rs.getDate(5),rs.getDouble(6)));
+                listaAlquiler.add(new Alquiler(
+                        rs.getInt(1)
+                        ,rs.getInt(2)
+                        ,rs.getInt(3)
+                        ,String.valueOf(rs.getDate(4))
+                        ,rs.getDate(5)
+                        ,rs.getDouble(6)
+                        ,String.valueOf(rs.getInt(6))
+                ));
                 
             }
             System.out.println("AlquilerDaoImpl getListaAlquileres fin");
