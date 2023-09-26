@@ -7,6 +7,7 @@ package sunat.gob.pe.airbnfx.controller;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.beans.binding.StringBinding;
@@ -15,6 +16,7 @@ import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -52,14 +54,6 @@ public class AlquilerController implements Initializable {
     private TableColumn<Alquiler, Date> fechaFinColumn;
     @FXML
     private TableColumn<Alquiler, String> montoAlquilerColumn;
-    @FXML
-    private TextField txtPrecio;
-
-    @FXML
-    private TextField txtCodigoDepartamento;
-
-    @FXML
-    private DatePicker txtFechaInicio;
 
     @FXML
     private Label lblDistrito;
@@ -71,13 +65,26 @@ public class AlquilerController implements Initializable {
     private Label lblDescripcion;
     @FXML
     private Label lblPrecioNoche;
+    
+    @FXML
+    private TextField txtSolicitante;
+    @FXML
+    private TextField txtDni;
+    @FXML
+    private DatePicker txtFechaInicio;
+    @FXML
+    private DatePicker txtFechaFin;
+    @FXML
+    private TextField txtPrecio;
+    @FXML
+    private TextField txtCodigoDepartamento;
 
     @FXML
     private Button btnGuardar;
 
     private ObservableList<Alquiler> alquilerData = FXCollections.observableArrayList();
 
-    private Alquiler alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "");
+    private Alquiler alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "","","");
     private Departamento departamentoActual = new Departamento();
 
     @Override
@@ -115,7 +122,7 @@ public class AlquilerController implements Initializable {
         //Binding
         txtPrecio.textProperty().bindBidirectional(alquilerActual.getMto1());
 
-        txtFechaInicio.setValue(LocalDate.of(2000, Month.JANUARY, 1));
+        //txtFechaInicio.setValue(LocalDate.of(2000, Month.JANUARY, 1));
 
         //Llenado de la grilla
         idAlquilerColumn.setCellValueFactory(rowData -> rowData.getValue().getIdAlquiler1());
@@ -169,7 +176,7 @@ public class AlquilerController implements Initializable {
             alquilerActual.setMontoAlquiler(alquilerNuevo.getMontoAlquiler());
             alquilerActual.setMto(alquilerNuevo.getMto());
         } else {
-            alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "");
+            alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "","","");
         }
     }
 
@@ -178,5 +185,51 @@ public class AlquilerController implements Initializable {
         dialogo.setHeaderText(header);
         dialogo.setContentText(content);
         dialogo.show();
+    }
+    
+    public void guardarAlquiler(ActionEvent event) {
+        System.out.println("AlquilerController guardarAlquiler..."+alquilerActual.toString());
+        if(alquilerActual.getIdAlquiler()==0){
+            LocalDate dateInicio = txtFechaInicio.getValue();
+            if(dateInicio==null){
+                mostrarAlertas("Warning", "Ingrese Fecha Inicio", Alert.AlertType.WARNING);
+                return;
+            }
+            LocalDate dateFinal = txtFechaFin.getValue();
+            if(dateFinal==null){
+                mostrarAlertas("Warning", "Ingrese Fecha Fin", Alert.AlertType.WARNING);
+                return;
+            }
+            System.out.println("AlquilerController guardarAlquiler dateInicio..."+dateInicio);
+            System.out.println("AlquilerController guardarAlquiler dateInicio..."+dateInicio.toString());
+            System.out.println("AlquilerController guardarAlquiler dateFin..."+dateFinal);
+            System.out.println("AlquilerController guardarAlquiler dateFin..."+dateFinal.toString());
+            if("".equals(txtSolicitante.getText().trim())){
+                mostrarAlertas("Warning", "Ingrese Solicitante", Alert.AlertType.WARNING);
+                return;
+            }
+            if("".equals(txtDni.getText().trim())){
+                mostrarAlertas("Warning", "Ingrese Dni", Alert.AlertType.WARNING);
+                return;
+            }
+            if("".equals(txtPrecio.getText().trim())){
+                mostrarAlertas("Warning", "Ingrese Precio total", Alert.AlertType.WARNING);
+                return;
+            }
+            alquilerActual.setFechaInicio(dateInicio.toString());
+            Date dtdFinal=Date.from(dateFinal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            alquilerActual.setFechaFinal(dtdFinal);
+            alquilerActual.setSolicitante(txtSolicitante.getText().trim());
+            alquilerActual.setDni(txtDni.getText().trim());
+            alquilerActual.setMto(txtPrecio.getText().trim());
+            alquilerActual.setIdDepartamento(departamentoActual.getIdDepartamento());
+            
+            
+            IAlquilerDao alquilerDao = new AlquilerDaoImpl();
+            alquilerDao.guardarAlquiler(alquilerActual);
+            mostrarAlertas("Informacion", "Se guardo exitosamente", Alert.AlertType.INFORMATION);
+            
+            llenarDatosEnTabla();
+        }
     }
 }

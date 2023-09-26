@@ -13,4 +13,5 @@ import sunat.gob.pe.airbnfx.model.entities.Alquiler;
  */
 public interface IAlquilerDao {
     List<Alquiler> getListaAlquileres(Integer idDepartamento);
+    void guardarAlquiler(Alquiler alquiler);
 }

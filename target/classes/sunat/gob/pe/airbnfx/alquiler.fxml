@@ -159,13 +159,13 @@
                            </font>
                         </Label>
                         <DatePicker fx:id="txtFechaInicio" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <DatePicker prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="3" />
-                        <TextField promptText="Ingrese apellidos y nombres del solicitante" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                        <DatePicker fx:id="txtFechaFin" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="3" />
+                        <TextField fx:id="txtSolicitante" promptText="Ingrese apellidos y nombres del solicitante" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <TextField promptText="Ingrese dni" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="txtDni" promptText="Ingrese dni" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="Comic Sans MS" size="14.0" />
                            </font>
@@ -180,7 +180,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnGuardar" mnemonicParsing="false" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarAlquiler" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <font>
                               <Font name="Comic Sans MS" size="14.0" />
                            </font>

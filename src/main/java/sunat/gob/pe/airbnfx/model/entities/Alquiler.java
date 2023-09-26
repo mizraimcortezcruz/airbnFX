@@ -22,6 +22,8 @@ public class Alquiler {
     private ObjectProperty<Date> fechaFinal;
     private ObjectProperty<Double> montoAlquiler;
     private StringProperty mto;
+    private StringProperty dni;
+    private StringProperty solicitante;
 
     public Alquiler() {
         this.idAlquiler = new SimpleObjectProperty<>(0);
@@ -30,9 +32,13 @@ public class Alquiler {
         this.fechaInicio = new SimpleStringProperty("");
         this.fechaFinal = new SimpleObjectProperty(new Date());
         this.montoAlquiler = new SimpleObjectProperty(0.0);
+        this.dni=new SimpleStringProperty("");
+        this.solicitante=new SimpleStringProperty("");
     }
 
-    public Alquiler(Integer idAlquiler, Integer idUsuario, Integer idDepartamento, String fechaInicio, Date fechaFinal, Double montoAlquiler,String mto) {
+    public Alquiler(Integer idAlquiler, Integer idUsuario, Integer idDepartamento
+            , String fechaInicio, Date fechaFinal, Double montoAlquiler
+            ,String mto,String dni,String solicitante) {
         this.idAlquiler = new SimpleObjectProperty<>(idAlquiler);
         this.idUsuario = new SimpleObjectProperty<>(idUsuario);
         this.idDepartamento = new SimpleObjectProperty<>(idDepartamento);
@@ -40,13 +46,10 @@ public class Alquiler {
         this.fechaFinal = new SimpleObjectProperty<>(fechaFinal);
         this.montoAlquiler = new SimpleObjectProperty<>(montoAlquiler);
         this.mto=new SimpleStringProperty(mto);
+        this.dni=new SimpleStringProperty(dni);
+        this.solicitante=new SimpleStringProperty(solicitante);
     }
 
-    @Override
-    public String toString() {
-        return "Alquiler{" + "idAlquiler=" + idAlquiler + ", idUsuario=" + idUsuario + ", idDepartamento=" + idDepartamento + ", fechaInicio=" + fechaInicio + ", fechaFinal=" + fechaFinal + ", montoAlquiler=" + montoAlquiler + '}';
-    }
-    
     public Integer getIdAlquiler() {
         return idAlquiler.get();
     }
@@ -126,4 +129,22 @@ public class Alquiler {
         return mto;
     }
     
+    public String getDni() {
+        return dni.get();
+    }
+    public StringProperty getDni1() {
+        return dni;
+    }
+    public void setDni(String idAlquiler) {
+        this.dni.set(idAlquiler);
+    }
+    public String getSolicitante() {
+        return solicitante.get();
+    }
+    public StringProperty getSolicitante1() {
+        return solicitante;
+    }
+    public void setSolicitante(String solicitante) {
+        this.solicitante.set(solicitante);
+    }
 }
