@@ -90,7 +90,7 @@ public class AlquilerController implements Initializable {
 
     private ObservableList<Alquiler> alquilerData = FXCollections.observableArrayList();
 
-    private Alquiler alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "","","");
+    private Alquiler alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "","","",new Date());
     private Departamento departamentoActual = new Departamento();
 
     @Override
@@ -182,7 +182,7 @@ public class AlquilerController implements Initializable {
             alquilerActual.setMontoAlquiler(alquilerNuevo.getMontoAlquiler());
             alquilerActual.setMto(alquilerNuevo.getMto());
         } else {
-            alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "","","");
+            alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "","","",new Date());
         }
     }
 
@@ -236,14 +236,22 @@ public class AlquilerController implements Initializable {
                 mostrarAlertas("Warning", "Ingrese Precio total", Alert.AlertType.WARNING);
                 return;
             }
-            alquilerActual.setFechaInicio(dateInicio.toString());
+            //alquilerActual.setFechaInicio(dateInicio.toString());
+            //convertir el LocalDate del datepicker a Date
+            Date dtdInicio=Date.from(dateInicio.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
             Date dtdFinal=Date.from(dateFinal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            
+            System.out.println("AlquilerController guardarAlquiler dateInicio time..."+dtdInicio.getTime());
+            System.out.println("AlquilerController guardarAlquiler dateFinal time..."+dtdFinal.getTime());
+            
+            //llenar los datos
+            alquilerActual.setFechaInicial(dtdInicio);
             alquilerActual.setFechaFinal(dtdFinal);
+            
             alquilerActual.setSolicitante(txtSolicitante.getText().trim());
             alquilerActual.setDni(txtDni.getText().trim());
             alquilerActual.setMto(txtPrecio.getText().trim());
             alquilerActual.setIdDepartamento(departamentoActual.getIdDepartamento());
-            
             
             IAlquilerDao alquilerDao = new AlquilerDaoImpl();
             alquilerDao.guardarAlquiler(alquilerActual);

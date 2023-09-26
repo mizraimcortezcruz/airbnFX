@@ -19,6 +19,7 @@ public class Alquiler {
     private ObjectProperty<Integer> idUsuario;
     private ObjectProperty<Integer> idDepartamento;
     private StringProperty fechaInicio;
+    private ObjectProperty<Date> fechaInicial;
     private ObjectProperty<Date> fechaFinal;
     private ObjectProperty<Double> montoAlquiler;
     private StringProperty mto;
@@ -34,11 +35,12 @@ public class Alquiler {
         this.montoAlquiler = new SimpleObjectProperty(0.0);
         this.dni=new SimpleStringProperty("");
         this.solicitante=new SimpleStringProperty("");
+        this.fechaInicial = new SimpleObjectProperty(new Date());
     }
 
     public Alquiler(Integer idAlquiler, Integer idUsuario, Integer idDepartamento
             , String fechaInicio, Date fechaFinal, Double montoAlquiler
-            ,String mto,String dni,String solicitante) {
+            ,String mto,String dni,String solicitante,Date fechaInicial) {
         this.idAlquiler = new SimpleObjectProperty<>(idAlquiler);
         this.idUsuario = new SimpleObjectProperty<>(idUsuario);
         this.idDepartamento = new SimpleObjectProperty<>(idDepartamento);
@@ -48,6 +50,7 @@ public class Alquiler {
         this.mto=new SimpleStringProperty(mto);
         this.dni=new SimpleStringProperty(dni);
         this.solicitante=new SimpleStringProperty(solicitante);
+        this.fechaInicial = new SimpleObjectProperty(fechaInicial);
     }
 
     public Integer getIdAlquiler() {
@@ -103,6 +106,17 @@ public class Alquiler {
     }
     public void setFechaFinal(Date fechaFinal) {
         this.fechaFinal.set(fechaFinal);
+    }
+    
+    public Date getFechaInicial() {
+        return fechaInicial.get();
+    }
+    public ObjectProperty<Date> getFechaInicial1() {
+        return fechaInicial;
+    }
+    public void setFechaInicial(Date fechaInicial) {
+        System.out.println("AlquilerController guardarAlquiler dateFinal pojo time..."+fechaInicial.getTime());
+        this.fechaInicial.set(fechaInicial);
     }
 
     public Double getMontoAlquiler() {

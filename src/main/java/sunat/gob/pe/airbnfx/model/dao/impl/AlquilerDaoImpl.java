@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import sunat.gob.pe.airbnfx.model.dao.IAlquilerDao;
 import sunat.gob.pe.airbnfx.model.entities.Alquiler;
@@ -54,6 +53,7 @@ public class AlquilerDaoImpl implements IAlquilerDao{
                         ,String.valueOf(rs.getInt(6))
                         ,rs.getString(7)
                         ,rs.getString(8)
+                        ,rs.getDate(4)
                 ));
                 
             }
@@ -98,12 +98,14 @@ public class AlquilerDaoImpl implements IAlquilerDao{
             cal.setTime(utilDate);
             java.sql.Date sqlDate = new java.sql.Date(cal.getTime().getTime());
             
-            pstmt.setDate(3, sqlDate);
-            pstmt.setDate(4, sqlDate);
+            pstmt.setDate(3, new java.sql.Date(alquiler.getFechaInicial().getTime()));
+            pstmt.setDate(4, new java.sql.Date(alquiler.getFechaFinal().getTime()));
             pstmt.setDouble(5, Double.parseDouble(alquiler.getMto()));
             pstmt.setString(6, alquiler.getDni());
             pstmt.setString(7, alquiler.getSolicitante());
-            System.out.println("AlquilerDaoImpl guardarAlquiler inicia inserción");
+            System.out.println("AlquilerDaoImpl guardarAlquiler inicia inserción fecha inicio:"+alquiler.getFechaFinal());
+            System.out.println("AlquilerDaoImpl guardarAlquiler inicia inserción fecha inicio:"+alquiler.getFechaFinal().getTime());
+            System.out.println("AlquilerDaoImpl guardarAlquiler inicia inserción fecha inicio:"+new java.sql.Date(alquiler.getFechaFinal().getTime()));
             pstmt.executeUpdate();
 
         } catch (SQLException se) {
