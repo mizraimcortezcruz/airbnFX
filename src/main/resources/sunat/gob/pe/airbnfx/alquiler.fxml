@@ -30,7 +30,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Jesus María" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                        <Label fx:id="lblDistrito" text="Jesus María" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                            <font>
                               <Font name="Comic Sans MS" size="14.0" />
                            </font></Label>
@@ -38,7 +38,7 @@
                            <font>
                               <Font name="Comic Sans MS" size="14.0" />
                            </font></Label>
-                        <Label text="dsd dsds dsds aasasa dsds" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Label fx:id="lblDescripcion" text="dsd dsds dsds aasasa dsds" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font name="Comic Sans MS" size="14.0" />
                            </font></Label>
@@ -52,7 +52,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="Av. Brasil 2475" GridPane.columnIndex="3">
+                        <Label fx:id="lblDireccion" text="Av. Brasil 2475" GridPane.columnIndex="3">
                            <font>
                               <Font name="Comic Sans MS" size="14.0" />
                            </font>
@@ -67,7 +67,7 @@
                               <Font name="Comic Sans MS" size="14.0" />
                            </font>
                         </Label>
-                        <Label text="3" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Label fx:id="lblHabitaciones" text="3" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
                               <Font name="Comic Sans MS" size="14.0" />
                            </font>
@@ -102,11 +102,16 @@
                               <Font name="Comic Sans MS" size="14.0" />
                            </font>
                         </Label>
-                        <Label text="160" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                        <Label fx:id="lblPrecioNoche" text="160" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
+                        <TextField fx:id="txtCodigoDepartamento" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="39.0" prefWidth="129.0" promptText="Codigo dpto" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </TextField>
                      </children>
                      <VBox.margin>
                         <Insets bottom="40.0" />

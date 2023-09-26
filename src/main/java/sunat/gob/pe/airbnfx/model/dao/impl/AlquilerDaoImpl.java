@@ -21,7 +21,7 @@ import sunat.gob.pe.airbnfx.model.util.Conexion;
 public class AlquilerDaoImpl implements IAlquilerDao{
 
     @Override
-    public List<Alquiler> getListaAlquileres() {
+    public List<Alquiler> getListaAlquileres(Integer idDepartamento) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.getConexion();
         PreparedStatement pstmt = null;
@@ -30,8 +30,9 @@ public class AlquilerDaoImpl implements IAlquilerDao{
 
         try {
             System.out.println("AlquilerDaoImpl getListaAlquileres inicio");
-            String sql = "select idAlquiler,idUsuario,idDepartamento,FechaIni,FechaFin,MontoAlquiler from alquiler where idAlquiler = 1;";
+            String sql = "select idAlquiler,idUsuario,idDepartamento,FechaIni,FechaFin,MontoAlquiler from alquiler where idAlquiler = ? ";
             pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, idDepartamento);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {

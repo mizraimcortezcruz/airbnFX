@@ -13,4 +13,5 @@ import sunat.gob.pe.airbnfx.model.entities.Departamento;
  */
 public interface iDepartamento {
   List <Departamento>  busquedaDepartameto();
+  Departamento  busquedaDepartametoPorId(Integer idDepartamento);
 }

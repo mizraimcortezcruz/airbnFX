@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import sunat.gob.pe.airbnfx.model.entities.Departamento;
 import sunat.gob.pe.airbnfx.model.dao.iDepartamento;
-import sunat.gob.pe.airbnfx.model.entities.Usuario;
 import sunat.gob.pe.airbnfx.model.util.Conexion;
 
 /**
@@ -61,6 +60,51 @@ public class DepartamentoDaoImpl implements iDepartamento {
         }
 
         return listaDepartamento;
+    }
+
+    @Override
+    public Departamento busquedaDepartametoPorId(Integer idDepartamento) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.getConexion();
+        PreparedStatement pstmt = null;
+        Departamento objDepartamento = null;
+        ResultSet rs = null;
+        System.out.println("DepartamentoDaoImpl busquedaDepartametoPorId");
+        try {
+            
+            String sql = "Select idDepartamento,Departamento,Provincia,Distrito, Direccion, Espacio, Descripcion, NumHabitacion, NumBanios, NumCochera,Capacidad,PrecioNoche from departamento where idDepartamento = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, idDepartamento);
+            
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                objDepartamento = new Departamento();
+                objDepartamento.setDistrito(rs.getString(4));
+                objDepartamento.setDireccion(rs.getString(5));
+                objDepartamento.setDescripcion(rs.getString(7));
+                objDepartamento.setNumHabitacion(rs.getInt(8));
+                objDepartamento.setPrecioNoche(rs.getDouble(12));
+            }
+           
+        } catch (SQLException se) {
+            System.out.println("DepartamentoDaoImpl error:"+se.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+
+        return objDepartamento;
     }
 
     
