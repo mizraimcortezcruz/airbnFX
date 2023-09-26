@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sunat.gob.pe.airbnfx.controller.DashboardController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sunat.gob.pe.airbnfx.controller.DashboardController">
+   <children>
+      <Pane layoutY="100.0" prefHeight="400.0" prefWidth="800.0">
+         <children>
+            <BarChart id="barChart" fx:id="barChart" layoutX="116.0" prefHeight="400.0" prefWidth="534.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </Pane>
+      <Button layoutX="668.0" layoutY="27.0" mnemonicParsing="false" onAction="#retornaBusqueda" text="Retornar" />
+      <Label layoutX="258.0" layoutY="19.0" prefHeight="17.0" prefWidth="206.0" text="DEPARTAMENTOS POR DISTRITO" />
+   </children>
 </AnchorPane>

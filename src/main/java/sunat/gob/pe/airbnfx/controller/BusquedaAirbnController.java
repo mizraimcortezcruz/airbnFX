@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Window;
 import sunat.gob.pe.airbnfx.App;
 import sunat.gob.pe.airbnfx.model.dao.iDepartamento;
 import sunat.gob.pe.airbnfx.model.dao.impl.DepartamentoDaoImpl;
@@ -117,5 +118,15 @@ public class BusquedaAirbnController implements Initializable {
                 System.out.println("BusquedaAirbnController seleccionarElementoDeTabla error:"+ex.getMessage());
             }
         });
+    }
+    
+    public void opendashboard(ActionEvent actionEvent) throws IOException {
+         
+          FXMLLoader loader =  App.getFXMLLoader("dashboard");
+            Parent dashboard = loader.load();
+            App.scene.setRoot(dashboard);
+               Window window = App.scene.getWindow();
+            window.setWidth(900);
+            window.setHeight(700);
     }
 }

@@ -44,7 +44,7 @@
                   <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
                   <Label text="Precio hasta:" GridPane.rowIndex="1" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" text="Dashboard" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#opendashboard" text="Dashboard" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                   <Button mnemonicParsing="false" onAction="#buscarDepartamento" text="Buscar" GridPane.columnIndex="3" />
                </children>
             </GridPane>

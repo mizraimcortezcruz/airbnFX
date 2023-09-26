@@ -1,3 +1,4 @@
+D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\model\entities\barra.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\model\dao\iDepartamento.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\module-info.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\App.java
@@ -6,6 +7,7 @@ D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\a
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\model\dao\impl\DepartamentoDaoImpl.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\controller\BusquedaAirbnController.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\controller\LoginAirbnController.java
+D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\model\dao\Igrafico.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\SystemInfo.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\model\entities\Alquiler.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\model\util\Conexion.java
@@ -14,4 +16,5 @@ D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\a
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\controller\DashboardController.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\controller\AlquilerController.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\model\dao\impl\AlquilerDaoImpl.java
+D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\model\dao\impl\graficoDaoImpl.java
 D:\Data\Mizraim\cursosinsi\JAVAFX\proyectos\airbnFX\src\main\java\sunat\gob\pe\airbnfx\model\dao\impl\UsuarioDaoImpl.java
