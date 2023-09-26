@@ -4,12 +4,15 @@
  */
 package sunat.gob.pe.airbnfx.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -18,7 +21,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -26,6 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import sunat.gob.pe.airbnfx.App;
 import sunat.gob.pe.airbnfx.model.dao.IAlquilerDao;
 import sunat.gob.pe.airbnfx.model.dao.iDepartamento;
 import sunat.gob.pe.airbnfx.model.dao.impl.AlquilerDaoImpl;
@@ -185,6 +191,20 @@ public class AlquilerController implements Initializable {
         dialogo.setHeaderText(header);
         dialogo.setContentText(content);
         dialogo.show();
+    }
+    
+    public void cancelarAlquiler(ActionEvent event){
+        System.out.println("AlquilerController cancelarAlquiler...");
+        try {
+            FXMLLoader loader =  App.getFXMLLoader("busquedaAirbn");
+            Parent dashboard = loader.load();
+            App.scene.setRoot(dashboard);
+            BusquedaAirbnController busquedaController = loader.<BusquedaAirbnController>getController();
+            busquedaController.setMensaje("retorno desde alquiler controller");
+        } catch (IOException ex) {
+            System.out.println("AlquilerController cancelarAlquiler..."+ex.getMessage());
+            
+        }
     }
     
     public void guardarAlquiler(ActionEvent event) {

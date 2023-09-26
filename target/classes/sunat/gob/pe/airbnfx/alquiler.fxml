@@ -175,7 +175,7 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Button mnemonicParsing="false" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAlquiler" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <font>
                               <Font size="14.0" />
                            </font>

@@ -67,7 +67,7 @@ public class BusquedaAirbnController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO    
+        System.out.println("BusquedaAirbnController initialize");
         enlazarTabla();
         //  llenarDatosEnTabla();
         seleccionarElementoDeTabla();
@@ -98,7 +98,11 @@ public class BusquedaAirbnController implements Initializable {
         llenarDatosEnTabla();
         //enlazarTabla();
     }
-
+    
+    public void setMensaje(String mensaje) {
+        System.out.println("BusquedaAirbnController setMensaje mensaje:" + mensaje);
+    }
+    
     private void seleccionarElementoDeTabla() {
         System.out.println("BusquedaAirbnController seleccionarElementoDeTabla");
         departamentoTable.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Departamento> ov, Departamento departamentoAntiguo, Departamento departamentoNuevo) -> {
