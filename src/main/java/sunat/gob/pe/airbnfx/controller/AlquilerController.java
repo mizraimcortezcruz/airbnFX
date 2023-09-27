@@ -147,8 +147,9 @@ public class AlquilerController implements Initializable {
     private void llenarDatosEnTabla() {
 
         System.out.println("AlquilerController llenarDatosEnTabla cod. dpto...::" + txtCodigoDepartamento.getText());
-
+        //alquilerData = FXCollections.observableArrayList();
         IAlquilerDao alquilerDao = new AlquilerDaoImpl();
+        alquilerData.clear();
         alquilerData.addAll(alquilerDao.getListaAlquileres(Integer.parseInt(txtCodigoDepartamento.getText())));
     }
 
@@ -294,12 +295,14 @@ public class AlquilerController implements Initializable {
             if (alquilerActual.getIdAlquiler() == 0) {
                 alquilerDao.guardarAlquiler(alquilerActual);
                 mostrarAlertas("Informacion", "Se guardo exitosamente", Alert.AlertType.INFORMATION);
-            }else{
+            } else {
                 alquilerDao.actualizarAlquiler(alquilerActual);
                 System.out.println("AlquilerController actualizandoAlquiler..." + alquilerActual.toString());
-                mostrarAlertas("Informacion", "Se actualizo exitosamente", Alert.AlertType.INFORMATION);
+                alquilerActual.setIdAlquiler(0);
+                
+                mostrarAlertas("Informacion", "Se actualizo exitosamente!", Alert.AlertType.INFORMATION);
             }
-            
+
             llenarDatosEnTabla();
         }
 
