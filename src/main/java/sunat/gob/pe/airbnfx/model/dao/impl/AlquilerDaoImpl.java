@@ -123,5 +123,42 @@ public class AlquilerDaoImpl implements IAlquilerDao{
             }
         }
     }
+
+    @Override
+    public void actualizarAlquiler(Alquiler alquiler) {
+        
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.getConexion();
+        PreparedStatement pstmt = null;
+        try {
+            System.out.println("AlquilerDaoImpl actualizarAlquiler inicio");
+            String sql = " update alquiler set dni = ? ,Solicitante = ? ";
+            sql+="where idAlquiler = ? and idUsuario = ? and idDepartamento = ? ";
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, alquiler.getDni());
+            pstmt.setString(2, alquiler.getSolicitante());
+            pstmt.setInt(3, alquiler.getIdAlquiler());
+            pstmt.setInt(4, alquiler.getIdUsuario());
+            pstmt.setInt(5, alquiler.getIdDepartamento());
+            
+            
+            pstmt.executeUpdate();
+
+        } catch (SQLException se) {
+            System.out.println("AlquilerDaoImpl actualizarAlquiler error:"+se.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+    }
     
 }

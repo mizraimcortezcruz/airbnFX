@@ -9,6 +9,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -62,6 +63,11 @@ public class AlquilerController implements Initializable {
     private TableColumn<Alquiler, String> montoAlquilerColumn;
 
     @FXML
+    private TableColumn<Alquiler, String> dniColumn;
+    @FXML
+    private TableColumn<Alquiler, String> solicitanteColumn;
+
+    @FXML
     private Label lblDistrito;
     @FXML
     private Label lblDireccion;
@@ -71,7 +77,7 @@ public class AlquilerController implements Initializable {
     private Label lblDescripcion;
     @FXML
     private Label lblPrecioNoche;
-    
+
     @FXML
     private TextField txtSolicitante;
     @FXML
@@ -90,7 +96,7 @@ public class AlquilerController implements Initializable {
 
     private ObservableList<Alquiler> alquilerData = FXCollections.observableArrayList();
 
-    private Alquiler alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "","","",new Date());
+    private Alquiler alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "", "", "", new Date());
     private Departamento departamentoActual = new Departamento();
 
     @Override
@@ -129,7 +135,6 @@ public class AlquilerController implements Initializable {
         txtPrecio.textProperty().bindBidirectional(alquilerActual.getMto1());
 
         //txtFechaInicio.setValue(LocalDate.of(2000, Month.JANUARY, 1));
-
         //Llenado de la grilla
         idAlquilerColumn.setCellValueFactory(rowData -> rowData.getValue().getIdAlquiler1());
         idUsuarioColumn.setCellValueFactory(rowData -> rowData.getValue().getIdUsuario1());
@@ -137,6 +142,8 @@ public class AlquilerController implements Initializable {
         fechaInicioColumn.setCellValueFactory(rowData -> rowData.getValue().getFechaInicio1());
         fechaFinColumn.setCellValueFactory(rowData -> rowData.getValue().getFechaFinal1());
         montoAlquilerColumn.setCellValueFactory(rowData -> rowData.getValue().getMto1());
+        dniColumn.setCellValueFactory(rowData -> rowData.getValue().getDni1());
+        solicitanteColumn.setCellValueFactory(rowData -> rowData.getValue().getSolicitante1());
     }
 
     private void llenarDatosEnTabla() {
@@ -163,7 +170,31 @@ public class AlquilerController implements Initializable {
                     }
                     //txtPrecio.setText(alquilerActual.getMto().get());
                     //txtPrecio.textProperty().bindBidirectional(alquilerActual.getMto());
-                    System.out.println("AlquilerController actualizar");
+                    //urgente
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
+                    String dateInicio = alquilerActual.getFechaInicio();
+                    String[] splittedInicio = dateInicio.split("-");
+                    dateInicio = splittedInicio[2] + "/" + splittedInicio[1] + "/" + splittedInicio[0];
+                    //convert String to LocalDate
+                    LocalDate localDateInicio = LocalDate.parse(dateInicio, formatter);
+                    txtFechaInicio.setValue(localDateInicio);
+
+                    String dateFinal = String.valueOf(alquilerActual.getFechaFinal());
+                    String[] splittedFin = dateFinal.split("-");
+                    dateFinal = splittedFin[2] + "/" + splittedFin[1] + "/" + splittedFin[0];
+                    //convert String to LocalDate
+                    LocalDate localDateFinal = LocalDate.parse(dateFinal, formatter);
+                    txtFechaFin.setValue(localDateFinal);
+
+                    System.out.println("AlquilerController actualizar" + alquilerActual.toString());
+
+                    txtSolicitante.setText(alquilerActual.getSolicitante());
+                    txtDni.setText(alquilerActual.getDni());
+
+                    System.out.println("AlquilerController actualizar" + alquilerActual.getFechaInicio());
+                    System.out.println("AlquilerController actualizar" + alquilerActual.getFechaFinal());
                     return "Actualizar";
                 }
             };
@@ -181,8 +212,10 @@ public class AlquilerController implements Initializable {
             alquilerActual.setFechaFinal(alquilerNuevo.getFechaFinal());
             alquilerActual.setMontoAlquiler(alquilerNuevo.getMontoAlquiler());
             alquilerActual.setMto(alquilerNuevo.getMto());
+            alquilerActual.setDni(alquilerNuevo.getDni());
+            alquilerActual.setSolicitante(alquilerNuevo.getSolicitante());
         } else {
-            alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "","","",new Date());
+            alquilerActual = new Alquiler(0, 0, 0, "", new Date(), 0.0, "", "", "", new Date());
         }
     }
 
@@ -192,72 +225,85 @@ public class AlquilerController implements Initializable {
         dialogo.setContentText(content);
         dialogo.show();
     }
-    
-    public void cancelarAlquiler(ActionEvent event){
+
+    public void cancelarAlquiler(ActionEvent event) {
         System.out.println("AlquilerController cancelarAlquiler...");
         try {
-            FXMLLoader loader =  App.getFXMLLoader("busquedaAirbn");
+            FXMLLoader loader = App.getFXMLLoader("busquedaAirbn");
             Parent dashboard = loader.load();
             App.scene.setRoot(dashboard);
             BusquedaAirbnController busquedaController = loader.<BusquedaAirbnController>getController();
             busquedaController.setMensaje("retorno desde alquiler controller");
         } catch (IOException ex) {
-            System.out.println("AlquilerController cancelarAlquiler..."+ex.getMessage());
-            
+            System.out.println("AlquilerController cancelarAlquiler..." + ex.getMessage());
+
         }
     }
-    
+
+    public boolean validarFormulario() {
+        LocalDate dateInicio = txtFechaInicio.getValue();
+        if (txtFechaInicio.getValue() == null) {
+            mostrarAlertas("Warning", "Ingrese Fecha Inicio", Alert.AlertType.WARNING);
+            return true;
+        }
+        LocalDate dateFinal = txtFechaFin.getValue();
+        if (dateFinal == null) {
+            mostrarAlertas("Warning", "Ingrese Fecha Fin", Alert.AlertType.WARNING);
+            return true;
+        }
+        System.out.println("AlquilerController guardarAlquiler dateInicio..." + dateInicio);
+        System.out.println("AlquilerController guardarAlquiler dateInicio..." + dateInicio.toString());
+        System.out.println("AlquilerController guardarAlquiler dateFin..." + dateFinal);
+        System.out.println("AlquilerController guardarAlquiler dateFin..." + dateFinal.toString());
+        if ("".equals(txtSolicitante.getText().trim())) {
+            mostrarAlertas("Warning", "Ingrese Solicitante", Alert.AlertType.WARNING);
+            return true;
+        }
+        if ("".equals(txtDni.getText().trim())) {
+            mostrarAlertas("Warning", "Ingrese Dni", Alert.AlertType.WARNING);
+            return true;
+        }
+        if ("".equals(txtPrecio.getText().trim())) {
+            mostrarAlertas("Warning", "Ingrese Precio total", Alert.AlertType.WARNING);
+            return true;
+        }
+        return false;
+    }
+
     public void guardarAlquiler(ActionEvent event) {
-        System.out.println("AlquilerController guardarAlquiler..."+alquilerActual.toString());
-        if(alquilerActual.getIdAlquiler()==0){
+        System.out.println("AlquilerController guardarAlquiler..." + alquilerActual.toString());
+        if (!validarFormulario()) {
             LocalDate dateInicio = txtFechaInicio.getValue();
-            if(dateInicio==null){
-                mostrarAlertas("Warning", "Ingrese Fecha Inicio", Alert.AlertType.WARNING);
-                return;
-            }
             LocalDate dateFinal = txtFechaFin.getValue();
-            if(dateFinal==null){
-                mostrarAlertas("Warning", "Ingrese Fecha Fin", Alert.AlertType.WARNING);
-                return;
-            }
-            System.out.println("AlquilerController guardarAlquiler dateInicio..."+dateInicio);
-            System.out.println("AlquilerController guardarAlquiler dateInicio..."+dateInicio.toString());
-            System.out.println("AlquilerController guardarAlquiler dateFin..."+dateFinal);
-            System.out.println("AlquilerController guardarAlquiler dateFin..."+dateFinal.toString());
-            if("".equals(txtSolicitante.getText().trim())){
-                mostrarAlertas("Warning", "Ingrese Solicitante", Alert.AlertType.WARNING);
-                return;
-            }
-            if("".equals(txtDni.getText().trim())){
-                mostrarAlertas("Warning", "Ingrese Dni", Alert.AlertType.WARNING);
-                return;
-            }
-            if("".equals(txtPrecio.getText().trim())){
-                mostrarAlertas("Warning", "Ingrese Precio total", Alert.AlertType.WARNING);
-                return;
-            }
-            //alquilerActual.setFechaInicio(dateInicio.toString());
+
             //convertir el LocalDate del datepicker a Date
-            Date dtdInicio=Date.from(dateInicio.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-            Date dtdFinal=Date.from(dateFinal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-            
-            System.out.println("AlquilerController guardarAlquiler dateInicio time..."+dtdInicio.getTime());
-            System.out.println("AlquilerController guardarAlquiler dateFinal time..."+dtdFinal.getTime());
-            
+            Date dtdInicio = Date.from(dateInicio.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            Date dtdFinal = Date.from(dateFinal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+            System.out.println("AlquilerController guardarAlquiler dateInicio time..." + dtdInicio.getTime());
+            System.out.println("AlquilerController guardarAlquiler dateFinal time..." + dtdFinal.getTime());
+
             //llenar los datos
             alquilerActual.setFechaInicial(dtdInicio);
             alquilerActual.setFechaFinal(dtdFinal);
-            
+
             alquilerActual.setSolicitante(txtSolicitante.getText().trim());
             alquilerActual.setDni(txtDni.getText().trim());
             alquilerActual.setMto(txtPrecio.getText().trim());
             alquilerActual.setIdDepartamento(departamentoActual.getIdDepartamento());
-            
+
             IAlquilerDao alquilerDao = new AlquilerDaoImpl();
-            alquilerDao.guardarAlquiler(alquilerActual);
-            mostrarAlertas("Informacion", "Se guardo exitosamente", Alert.AlertType.INFORMATION);
+
+            if (alquilerActual.getIdAlquiler() == 0) {
+                alquilerDao.guardarAlquiler(alquilerActual);
+                mostrarAlertas("Informacion", "Se guardo exitosamente", Alert.AlertType.INFORMATION);
+            }else{
+                alquilerDao.actualizarAlquiler(alquilerActual);
+                System.out.println("AlquilerController actualizandoAlquiler..." + alquilerActual.toString());
+            }
             
             llenarDatosEnTabla();
         }
+
     }
 }
