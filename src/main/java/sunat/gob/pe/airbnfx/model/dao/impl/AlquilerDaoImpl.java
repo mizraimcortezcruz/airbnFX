@@ -131,16 +131,20 @@ public class AlquilerDaoImpl implements IAlquilerDao{
         Connection conn = conexion.getConexion();
         PreparedStatement pstmt = null;
         try {
-            System.out.println("AlquilerDaoImpl actualizarAlquiler inicio");
-            String sql = " update alquiler set dni = ? ,Solicitante = ? ";
+            System.out.println("AlquilerDaoImpl actualizarAlquiler inicio::"+alquiler.toString());
+            
+            String sql = " update alquiler set dni = ? ,Solicitante = ?,MontoAlquiler = ?, FechaIni = ? ,FechaFin = ? ";
             sql+="where idAlquiler = ? and idUsuario = ? and idDepartamento = ? ";
             pstmt = conn.prepareStatement(sql);
             
             pstmt.setString(1, alquiler.getDni());
             pstmt.setString(2, alquiler.getSolicitante());
-            pstmt.setInt(3, alquiler.getIdAlquiler());
-            pstmt.setInt(4, alquiler.getIdUsuario());
-            pstmt.setInt(5, alquiler.getIdDepartamento());
+            pstmt.setDouble(3, Double.parseDouble(alquiler.getMto()));
+            pstmt.setDate(4, new java.sql.Date(alquiler.getFechaInicial().getTime()));
+            pstmt.setDate(5, new java.sql.Date(alquiler.getFechaFinal().getTime()));
+            pstmt.setInt(6, alquiler.getIdAlquiler());
+            pstmt.setInt(7, alquiler.getIdUsuario());
+            pstmt.setInt(8, alquiler.getIdDepartamento());
             
             
             pstmt.executeUpdate();

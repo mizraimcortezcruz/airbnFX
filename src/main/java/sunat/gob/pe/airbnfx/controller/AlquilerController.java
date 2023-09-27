@@ -12,8 +12,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -170,7 +168,6 @@ public class AlquilerController implements Initializable {
                     }
                     //txtPrecio.setText(alquilerActual.getMto().get());
                     //txtPrecio.textProperty().bindBidirectional(alquilerActual.getMto());
-                    //urgente
 
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
@@ -300,6 +297,7 @@ public class AlquilerController implements Initializable {
             }else{
                 alquilerDao.actualizarAlquiler(alquilerActual);
                 System.out.println("AlquilerController actualizandoAlquiler..." + alquilerActual.toString());
+                mostrarAlertas("Informacion", "Se actualizo exitosamente", Alert.AlertType.INFORMATION);
             }
             
             llenarDatosEnTabla();
