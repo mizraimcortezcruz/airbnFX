@@ -172,7 +172,7 @@ public class Departamento {
     }
 
     public void setDireccion(String Direccion) {
-        this.Direccion.set(Direccion);;
+        this.Direccion.set(Direccion);
     }
 
     public ObjectProperty<Integer> getEspacio1() {

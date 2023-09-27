@@ -56,7 +56,7 @@
                   <TableColumn fx:id="capacidadColumn" prefWidth="38.0" text="Capacidad" />
                   <TableColumn fx:id="habitacionesColumn" prefWidth="36.0" text="Habitaciones" />
                   <TableColumn fx:id="descripcionColumn" prefWidth="175.0" text="Descripcion" />
-                  <TableColumn prefWidth="72.0" text="Precio x Noche" />
+                  <TableColumn fx:id="precioColumn" prefWidth="72.0" text="Precio x Noche" />
                   <TableColumn prefWidth="45.0" text="Operacion" />
               </columns>
             </TableView>

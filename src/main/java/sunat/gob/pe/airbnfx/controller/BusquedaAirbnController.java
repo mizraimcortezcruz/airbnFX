@@ -84,7 +84,7 @@ public class BusquedaAirbnController implements Initializable {
         capacidadColumn.setCellValueFactory(rowData -> rowData.getValue().getCapacidad1());
         habitacionesColumn.setCellValueFactory(rowData -> rowData.getValue().getNumHabitacion1());
         descripcionColumn.setCellValueFactory(rowData -> rowData.getValue().getDescripcion1());
-        //precioColumn.setCellValueFactory(rowData -> rowData.getValue().getPrecioNoche1());
+        precioColumn.setCellValueFactory(rowData -> rowData.getValue().getPrecioNoche1());
 
     }
 
